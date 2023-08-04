@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+</head>
+<body>
+    <h1>Text Sentiment Analysis</h1>
+    <form action="/analyze" method="POST">
+        <label for="text">Enter text:</label><br>
+        <textarea name="text" id="text" rows="4" cols="50"></textarea><br>
+        <button type="submit">Analyze</button>
+    </form>
+    {% if text %}
+    <p>Text: {{ text }}</p>
+    <p>Sentiment: {{ sentiment }}</p>
+    <h3>Word Sentiments:</h3>
+    <ul>
+        {% for word, polarity, subjectivity in word_sentiments %}
+        <li>
+            Word(s): {{ word }}, Polarity: {{ polarity }}, Subjectivity: {{ subjectivity }}
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Polarity refers to the emotional tone or sentiment expressed in a piece of text. Polarity scores are on a range from -1 to 1 where, -1 is a highly negative statement, 0 is a neutral statement, and 1 is a highly positive statment. Sentences like "I love you" tend to have a positive polarity and sentences like "I hate you" tend to have a negative polarity.  </p>
+    <p>Subjectivity refers to how opinionated or objective the text is. Subjectivity is on a range of 0 to 1 where 0 means a statment is highly factual and 1 which means that a statement is highly opinionated. Sentences like "The sky is blue" tend to have a score closer to 0 and sentences like "This is the worst movie ever" tends to have a score closer to 1 as it is highly opinionated. </p>
+    {% endif %}
+</body>
+</html>
